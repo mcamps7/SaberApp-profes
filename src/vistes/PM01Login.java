@@ -5,6 +5,10 @@
  */
 package vistes;
 
+import gestors.ClientProfessor;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -31,29 +35,7 @@ public class PM01Login extends javax.swing.JFrame {
 
     public void validarUsuari() {
 
-        contrasenya = new String(pass.getPassword());
-        nick = user.getText();
-
-        //TO DO Connectar, buscar i retornar
-        /*
-        try{
-            Connection cs=DriverManager.getConnection("jdbc:mysql://localhost/mydb1","root","1234");
-            PreparedStatement sp=cs.prepareStatement("select * from mytab1");
-            ResultSet rs=sp.executeQuery("select * from mytab1 where
-            username='"+search.getText()+"'");
-            while (rs.next()){
-                user.setText(rs.getString(1));
-                pass.setText(rs.getString(2));
-                country.setText(rs.getString(3));
-                district.setText(rs.getString(4));
-            }
-            JOptionPane.showMessageDialog(this,"Searched");
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(this,ex.getMessage());
-        } 
-        */
-        
-        if (user.getText().equals("Eduard") && contrasenya.compareTo("1234") == 0) { //TO DO canviar if usuari existeix
+        if (nick.equals("Eduard") && contrasenya.compareTo("1234") == 0) { //TODO canviar if usuari existeix
 
             dispose();
             PM02Menu f2 = new PM02Menu();
@@ -199,7 +181,48 @@ public class PM01Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        validarUsuari();
+        int res = 0;
+        //TODO Connectar, buscar i retornar
+        try {
+            ClientProfessor ges = new ClientProfessor();
+
+            ges.startClient();
+
+            contrasenya = new String(pass.getPassword());
+            nick = user.getText();
+            res = ges.login(nick, contrasenya);
+            System.out.println("La resposta del servidor és " + res);
+
+            switch (res) {
+                case 0:
+                    System.out.println("no ha passat res del que esperava");
+                    break;
+                case 1:
+                    dispose();
+                    JOptionPane.showMessageDialog(null, "Benvingut Profe!!\n"
+                            + "Acabes d'entrar al sistema correctament", "Missatge de benvinguda",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    PM02Menu f2 = new PM02Menu();
+                    f2.setVisible(true);
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrecta\n"
+                    + "Intenta-ho de nou", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(null, "S'ha produit un error en la lectura de dades",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                default:
+                    System.out.println("no sé per on agafar-ho");
+                    break;
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(PM01Login.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void lbRegisterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRegisterMouseEntered
@@ -213,11 +236,13 @@ public class PM01Login extends javax.swing.JFrame {
     }//GEN-LAST:event_lbRegisterMouseExited
 
     private void lbRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRegisterMouseClicked
+
         PM03Register f3 = new PM03Register();
         f3.setVisible(true);
         f3.setLocationRelativeTo(null);
         f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
+
     }//GEN-LAST:event_lbRegisterMouseClicked
 
     private void lbMinimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMinimMouseClicked
@@ -254,16 +279,21 @@ public class PM01Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PM01Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM01Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PM01Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM01Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PM01Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM01Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PM01Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PM01Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
