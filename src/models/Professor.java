@@ -5,15 +5,30 @@
  */
 package models;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Montse
  */
 public class Professor extends Usuari {
-    
-    public Professor(String nick, String password) {
-        super(nick, password);
+
+    private String materia;
+
+    public Professor(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, Institut institut, String materia) {
+        super(id, nick, password, nom, cognoms, email, imatge, institut);
+        this.materia = materia;
     }
-    
-    
+
+    public Professor() {
+    }
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
+    }
+
 }

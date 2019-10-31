@@ -5,10 +5,15 @@
  */
 package vistes;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import java.io.IOException;
+import gestors.ClientProfessor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,16 +21,38 @@ import javax.swing.JOptionPane;
  */
 public class PM03Register extends javax.swing.JFrame {
 
+    String contrasenya;
+    String nick, password, name, surname, school, mail, image;
+    String subject = "";
+    int id_institut = 1;
+
+    boolean dadesOK = false;
+
     /**
      * Creates new form PM03Register
+     *
+     * @throws java.io.IOException
      */
     public PM03Register() {
+        //this.controlador = new ClientProfessor();
         initComponents();
         setSize(750, 625);
         setResizable(false);
         setLocationRelativeTo(null);
 
         jPanel1.setSize(750, 625);
+
+        cbMateria.addItem("Mates");
+        cbMateria.addItem("Art");
+        cbMateria.addItem("English");
+        cbMateria.addItem("Història");
+        cbMateria.addItem("Filosofia");
+
+        cbInstitut.addItem("");
+        cbInstitut.addItem("INS Guillem de Berguedà");
+        cbInstitut.addItem("INS Pere Fontdevila");
+        cbInstitut.addItem("INS Puig-Reig");
+        cbInstitut.addItem("INS Serra de Noet");
     }
 
     /**
@@ -47,7 +74,6 @@ public class PM03Register extends javax.swing.JFrame {
         lbCorreu = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         lbMateria = new javax.swing.JLabel();
-        insti = new javax.swing.JTextField();
         lbInsti = new javax.swing.JLabel();
         cbMateria = new javax.swing.JComboBox<>();
         lbLogo = new javax.swing.JLabel();
@@ -61,6 +87,8 @@ public class PM03Register extends javax.swing.JFrame {
         lbExit = new javax.swing.JLabel();
         lbMinim = new javax.swing.JLabel();
         lbTornarText = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        cbInstitut = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +101,7 @@ public class PM03Register extends javax.swing.JFrame {
         jPanel1.add(lbIcona, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         lbUsuari.setFont(new java.awt.Font("Raleway", 1, 14)); // NOI18N
-        lbUsuari.setText("Usuari:");
+        lbUsuari.setText("*Usuari:");
         jPanel1.add(lbUsuari, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         user.setBackground(new java.awt.Color(239, 247, 207));
@@ -86,7 +114,7 @@ public class PM03Register extends javax.swing.JFrame {
         jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 200, 30));
 
         lbContrasenya.setFont(new java.awt.Font("Raleway", 1, 14)); // NOI18N
-        lbContrasenya.setText("Contrasenya:");
+        lbContrasenya.setText("*Contrasenya:");
         jPanel1.add(lbContrasenya, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         pass.setBackground(new java.awt.Color(239, 247, 207));
@@ -103,7 +131,7 @@ public class PM03Register extends javax.swing.JFrame {
         jPanel1.add(btRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 100, 30));
 
         lbCorreu.setFont(new java.awt.Font("Raleway", 1, 14)); // NOI18N
-        lbCorreu.setText("Adreça electrònica:");
+        lbCorreu.setText("*Adreça electrònica:");
         jPanel1.add(lbCorreu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
 
         email.setBackground(new java.awt.Color(239, 247, 207));
@@ -119,22 +147,17 @@ public class PM03Register extends javax.swing.JFrame {
         lbMateria.setText("Matèria:");
         jPanel1.add(lbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
 
-        insti.setBackground(new java.awt.Color(239, 247, 207));
-        insti.setToolTipText("nom usuari");
-        insti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                instiActionPerformed(evt);
-            }
-        });
-        jPanel1.add(insti, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 260, 30));
-
         lbInsti.setFont(new java.awt.Font("Raleway", 1, 14)); // NOI18N
         lbInsti.setText("Centre educatiu:");
         jPanel1.add(lbInsti, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
 
         cbMateria.setBackground(new java.awt.Color(239, 247, 207));
         cbMateria.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        cbMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Art", "Mates", "Filo", "English" }));
+        cbMateria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMateriaItemStateChanged(evt);
+            }
+        });
         jPanel1.add(cbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 260, 30));
 
         lbLogo.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
@@ -213,6 +236,17 @@ public class PM03Register extends javax.swing.JFrame {
         lbTornarText.setText("TORNAR");
         jPanel1.add(lbTornarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 520, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Raleway", 0, 11)); // NOI18N
+        jLabel1.setText("* Aquests camps són obligatoris");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, -1, -1));
+
+        cbInstitut.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbInstitutItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cbInstitut, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 260, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,16 +266,75 @@ public class PM03Register extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-        registrarUsuari();
+        String res = "";
+
+        //TODO Connectar, buscar i retornar
+        try {
+            ClientProfessor ges = new ClientProfessor();
+            ges.startClient("2");
+
+            contrasenya = new String(pass.getPassword());
+            nick = user.getText();
+            name = nom.getText();
+            surname = cognoms.getText();
+            mail = email.getText();
+            school = (String) cbInstitut.getSelectedItem();
+            subject = (String) cbMateria.getSelectedItem();
+            image = imatge.getText();
+
+            Pattern p = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
+            Matcher m = p.matcher(mail);
+
+            //Validar dades
+            //TODO millorar validació
+            if (m.find() == true) {
+                System.out.println("El email ingresado es válido.");
+                if (!nick.isEmpty() || !mail.isEmpty() || !password.isEmpty()) {
+                    dadesOK= true;
+                    
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hi ha camps obligatoris buits", "Alerta", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "L'adreça de correu no és vàlida", "Alerta", JOptionPane.WARNING_MESSAGE);
+                System.out.println("El email ingresado es inválido.");
+                
+            }
+            
+            if(dadesOK){
+                res = ges.registreProfessor(nick, contrasenya, name, surname, mail, image, id_institut, subject);
+                    System.out.println("La resposta del servidor és " + res + "\n" + nick + contrasenya + name
+                            + surname + mail + image + id_institut + school + subject);
+
+                    dispose();
+                    JOptionPane.showMessageDialog(null, "Benvingut " + nick + "!!\n"
+                            + "T'has registrat correctament", "Missatge de benvinguda",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    PM02Menu f2 = new PM02Menu();
+                    f2.pack();
+                    f2.setVisible(true);
+                    f2.setLocationRelativeTo(null);
+                    f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Alguna cosa ha anat malament", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            
+            
+
+        } catch (IOException ex) {
+            Logger.getLogger(PM03Register.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btRegistrarActionPerformed
 
     private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
-
-    private void instiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_instiActionPerformed
 
     private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
         // TODO add your handling code here:
@@ -271,6 +364,14 @@ public class PM03Register extends javax.swing.JFrame {
     private void lbMinimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbMinimMouseClicked
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lbMinimMouseClicked
+
+    private void cbMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMateriaItemStateChanged
+        subject = (String) cbMateria.getSelectedItem();
+    }//GEN-LAST:event_cbMateriaItemStateChanged
+
+    private void cbInstitutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbInstitutItemStateChanged
+        id_institut = ((int) cbInstitut.getSelectedIndex())+1;
+    }//GEN-LAST:event_cbInstitutItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -302,18 +403,21 @@ public class PM03Register extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new PM03Register().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
+    private javax.swing.JComboBox<String> cbInstitut;
     private javax.swing.JComboBox<String> cbMateria;
     private javax.swing.JTextField cognoms;
     private javax.swing.JTextField email;
     private javax.swing.JTextField imatge;
-    private javax.swing.JTextField insti;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbCognoms;
     private javax.swing.JLabel lbContrasenya;
@@ -334,28 +438,4 @@ public class PM03Register extends javax.swing.JFrame {
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 
-    private void registrarUsuari() {
-        //TO DO comprovar dades, return dades ok true
-
-        String nick = user.getText();
-        String password = pass.toString();
-        String name = nom.getText();
-        String surname = cognoms.getText();
-        String mail = email.getText();
-        String school = insti.getText();
-        String subject = cbMateria.getItemAt(WIDTH);
-        String image = imatge.getText();
-
-        //TO DO Preparar paquet de dades objecte professor
-        //TO DO enviar dades a la BDD
-        
-        //TO DO Canviar if (dadesOK enviades)
-        if (nick.length() != 0) {
-            PM02Menu f2 = new PM02Menu();
-            f2.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Omple tots els camps obligatòris \nIntenta-ho de nou", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 }

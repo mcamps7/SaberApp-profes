@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
  * @author Montse
  */
 public class Usuari {
+
     //Atributs
     private int id;
     private String nick;
@@ -20,18 +21,31 @@ public class Usuari {
     private String cognoms;
     private String email;
     private ImageIcon imatge;
-    private String institut;
+    public Institut institut;
 
     //Constructor
-    public Usuari(String nick, String password) {
+    public Usuari() {
+    }
+
+    public Usuari(String nick, String password, String email) {
         this.nick = nick;
         this.password = password;
+        this.email = email;
     }
-    
-    
+
+    public Usuari(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, Institut institut) {
+
+        this.id = id;
+        this.nick = nick;
+        this.password = password;
+        this.nom = nom;
+        this.cognoms = cognoms;
+        this.email = email;
+        this.imatge = imatge;
+        this.institut = institut;
+    }
 
     //Getters i setters
-
     public int getId() {
         return id;
     }
@@ -88,12 +102,12 @@ public class Usuari {
         this.imatge = imatge;
     }
 
-    public String getInstitut() {
+    public Institut getInstitut() {
         return institut;
     }
 
-    public void setInstitut(String institut) {
+    public void setInstitut(Institut institut) {
         this.institut = institut;
     }
-    
+
 }
