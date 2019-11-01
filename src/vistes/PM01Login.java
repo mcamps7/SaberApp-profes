@@ -20,6 +20,7 @@ public class PM01Login extends javax.swing.JFrame {
 
     String contrasenya;
     String nick;
+    int intents = 0;
 
     /**
      * Creates new form PM01Login
@@ -33,17 +34,6 @@ public class PM01Login extends javax.swing.JFrame {
         jPanel1.setSize(500, 475);
     }
 
-    public void validarUsuari() {
-
-        if (nick.equals("Eduard") && contrasenya.compareTo("1234") == 0) { //TODO canviar if usuari existeix
-
-            dispose();
-            PM02Menu f2 = new PM02Menu();
-            f2.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrecta \nIntenta-ho de nou", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,57 +171,51 @@ public class PM01Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        int res = 0;
-        int intents = 0;
+        int res;
+        
 
-        //TODO Connectar, buscar i retornar
+        //Connectar, buscar i retornar
         try {
             ClientProfessor ges = new ClientProfessor();
             ges.startClient("1");
-            
-            do {
 
-                contrasenya = new String(pass.getPassword());
-                nick = user.getText();
-                res = ges.login(nick, contrasenya);
-                System.out.println("La resposta del servidor és " + res);
+            contrasenya = new String(pass.getPassword());
+            nick = user.getText();
+            res = ges.login(nick, contrasenya);
 
-                switch (res) {
-                    case 0:
-                        System.out.println("no ha passat res del que esperava");
-                        break;
-                    case 1:
-                        dispose();
-                        JOptionPane.showMessageDialog(null, "Benvingut " + nick + "!!\n"
-                                + "Acabes d'entrar al sistema correctament", "Missatge de benvinguda",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        intents = 4;
-                        PM02Menu f2 = new PM02Menu();
-                        f2.pack();
-                        f2.setVisible(true);
-                        f2.setLocationRelativeTo(null);
-                        f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        this.dispose();
-                        break;
-                    case 2:
-                        user.setText("");
-                        pass.setText("");
-                        intents++;
-                        JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrecta\n"
-                                + "Intenta-ho de nou", "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    case 3:
-                        JOptionPane.showMessageDialog(null, "S'ha produit un error en la lectura de dades",
-                                "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
-                    default:
-                        System.out.println("no sé per on agafar-ho");
-                        break;
-                }
-            } while (intents < 3);
-            if (intents == 3) {
-                JOptionPane.showMessageDialog(null, "Accés bloquejat\n Ha superat el maxim d'intents erronis!!");
+            System.out.println("La resposta del servidor és " + res);
+
+            if (res == 1) {
+
+                dispose();
+                JOptionPane.showMessageDialog(null, "Benvingut " + nick + "!!\n"
+                        + "Acabes d'entrar al sistema correctament", "Missatge de benvinguda",
+                        JOptionPane.INFORMATION_MESSAGE);
+                intents = 4;
+                PM02Menu f2 = new PM02Menu();
+                f2.pack();
+                f2.setVisible(true);
+                f2.setLocationRelativeTo(null);
+                f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+
+            } else if (intents == 3) {
+                JOptionPane.showMessageDialog(null, "Accés bloquejat\n Ha superat el màxim d'intents erronis!!");
                 System.exit(0);
+                
+            } else if (res == 3) {
+                user.setText("");
+                pass.setText("");
+                intents++;
+                JOptionPane.showMessageDialog(null, "S'ha produit un error en la lectura de dades",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                user.setText("");
+                pass.setText("");
+                intents++;
+                JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrecta\n"
+                        + "Intenta-ho de nou", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (IOException ex) {
