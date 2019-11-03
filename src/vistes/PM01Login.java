@@ -197,6 +197,9 @@ public class PM01Login extends javax.swing.JFrame {
                 f2.setVisible(true);
                 f2.setLocationRelativeTo(null);
                 f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f2.nick=nick;
+                //TODO REVISAR, em podria endur l'objecte professor a la seguent pantalla? 
+                //Si més no necessito l'id generat per accedir a l'usuari connectat
                 this.dispose();
 
             } else if (intents == 3) {

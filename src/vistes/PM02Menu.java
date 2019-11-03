@@ -5,11 +5,18 @@
  */
 package vistes;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import models.Professor;
+import vistes.panels.CanviaPanel;
+
+
 /**
  *
  * @author Montse
  */
-public class PM02Menu extends javax.swing.JFrame {
+public class PM02Menu extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form PM02Menu
@@ -18,10 +25,10 @@ public class PM02Menu extends javax.swing.JFrame {
         initComponents();
         this.setSize(750, 625);
         this.setLocationRelativeTo(this);
-        this.btInici.setSelected(true);
-
+        this.rSBtInici.setSelected(true);
+        
         jPanel1.setSize(750, 625);
-
+        
     }
 
     /**
@@ -40,15 +47,22 @@ public class PM02Menu extends javax.swing.JFrame {
         lbLogout = new javax.swing.JLabel();
         btMenu = new javax.swing.JButton();
         jPanelEsqLlisc = new javax.swing.JPanel();
-        btInici = new javax.swing.JButton();
-        btUsuaris = new javax.swing.JButton();
-        btRanquing = new javax.swing.JButton();
-        btJoc = new javax.swing.JButton();
+        rSBtInici = new recursos.rsbuttom.RSButtonMetro();
+        rSBtUsuaris = new recursos.rsbuttom.RSButtonMetro();
+        rSBtRanquing = new recursos.rsbuttom.RSButtonMetro();
+        rSBtJoc = new recursos.rsbuttom.RSButtonMetro();
         jPanelPrinc = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPInicial = new javax.swing.JPanel();
         lbBenvinguts = new javax.swing.JLabel();
         lbLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(162, 215, 41));
         jPanel1.setMinimumSize(new java.awt.Dimension(750, 600));
@@ -63,6 +77,11 @@ public class PM02Menu extends javax.swing.JFrame {
         lbUsuari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icon_rounded_user_login.png"))); // NOI18N
         lbUsuari.setText("Eduard");
         lbUsuari.setIconTextGap(15);
+        lbUsuari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbUsuariMouseClicked(evt);
+            }
+        });
 
         lbLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icon_exit2_64.png"))); // NOI18N
         lbLogout.setToolTipText("Logout");
@@ -90,7 +109,7 @@ public class PM02Menu extends javax.swing.JFrame {
             jPanelBarraSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBarraSupLayout.createSequentialGroup()
                 .addComponent(btMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
                 .addComponent(lbUsuari, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbLogout)
@@ -122,96 +141,88 @@ public class PM02Menu extends javax.swing.JFrame {
 
         jPanelEsqLlisc.setBackground(new java.awt.Color(239, 247, 207));
 
-        btInici.setBackground(new java.awt.Color(209, 217, 177));
-        btInici.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        btInici.setText("Inici");
-        btInici.setToolTipText("");
-        btInici.setBorderPainted(false);
-        btInici.setContentAreaFilled(false);
-        btInici.setFocusPainted(false);
-        btInici.setMaximumSize(new java.awt.Dimension(150, 25));
-        btInici.setMinimumSize(new java.awt.Dimension(150, 25));
-        btInici.setOpaque(true);
-        btInici.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btIniciMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btIniciMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btIniciMouseExited(evt);
+        rSBtInici.setBorder(null);
+        rSBtInici.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/001-home-page.png"))); // NOI18N
+        rSBtInici.setText("Inici");
+        rSBtInici.setColorHover(new java.awt.Color(189, 197, 157));
+        rSBtInici.setColorNormal(new java.awt.Color(209, 217, 177));
+        rSBtInici.setColorPressed(new java.awt.Color(189, 197, 157));
+        rSBtInici.setColorTextHover(new java.awt.Color(239, 247, 207));
+        rSBtInici.setColorTextNormal(new java.awt.Color(23, 33, 33));
+        rSBtInici.setColorTextPressed(new java.awt.Color(239, 247, 207));
+        rSBtInici.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        rSBtInici.setIconTextGap(15);
+        rSBtInici.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rSBtIniciMousePressed(evt);
             }
         });
-
-        btUsuaris.setBackground(new java.awt.Color(209, 217, 177));
-        btUsuaris.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        btUsuaris.setText("Usuaris");
-        btUsuaris.setToolTipText("");
-        btUsuaris.setBorderPainted(false);
-        btUsuaris.setContentAreaFilled(false);
-        btUsuaris.setFocusPainted(false);
-        btUsuaris.setMaximumSize(new java.awt.Dimension(150, 25));
-        btUsuaris.setMinimumSize(new java.awt.Dimension(150, 25));
-        btUsuaris.setOpaque(true);
-        btUsuaris.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btUsuarisMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btUsuarisMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btUsuarisMouseExited(evt);
-            }
-        });
-
-        btRanquing.setBackground(new java.awt.Color(209, 217, 177));
-        btRanquing.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        btRanquing.setText("Rànquing");
-        btRanquing.setToolTipText("");
-        btRanquing.setBorderPainted(false);
-        btRanquing.setContentAreaFilled(false);
-        btRanquing.setFocusPainted(false);
-        btRanquing.setMaximumSize(new java.awt.Dimension(150, 25));
-        btRanquing.setMinimumSize(new java.awt.Dimension(150, 25));
-        btRanquing.setOpaque(true);
-        btRanquing.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btRanquingMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btRanquingMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btRanquingMouseExited(evt);
-            }
-        });
-
-        btJoc.setBackground(new java.awt.Color(209, 217, 177));
-        btJoc.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        btJoc.setText("Joc");
-        btJoc.setToolTipText("");
-        btJoc.setBorderPainted(false);
-        btJoc.setContentAreaFilled(false);
-        btJoc.setFocusPainted(false);
-        btJoc.setMaximumSize(new java.awt.Dimension(150, 25));
-        btJoc.setMinimumSize(new java.awt.Dimension(150, 25));
-        btJoc.setOpaque(true);
-        btJoc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btJocMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btJocMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btJocMouseExited(evt);
-            }
-        });
-        btJoc.addActionListener(new java.awt.event.ActionListener() {
+        rSBtInici.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btJocActionPerformed(evt);
+                rSBtIniciActionPerformed(evt);
+            }
+        });
+
+        rSBtUsuaris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/002-multiple-users-silhouette.png"))); // NOI18N
+        rSBtUsuaris.setText("Usuaris");
+        rSBtUsuaris.setColorHover(new java.awt.Color(189, 197, 157));
+        rSBtUsuaris.setColorNormal(new java.awt.Color(209, 217, 177));
+        rSBtUsuaris.setColorPressed(new java.awt.Color(189, 197, 157));
+        rSBtUsuaris.setColorTextHover(new java.awt.Color(239, 247, 207));
+        rSBtUsuaris.setColorTextNormal(new java.awt.Color(23, 33, 33));
+        rSBtUsuaris.setColorTextPressed(new java.awt.Color(239, 247, 207));
+        rSBtUsuaris.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        rSBtUsuaris.setIconTextGap(15);
+        rSBtUsuaris.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rSBtUsuarisMousePressed(evt);
+            }
+        });
+        rSBtUsuaris.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSBtUsuarisActionPerformed(evt);
+            }
+        });
+
+        rSBtRanquing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/004-rank.png"))); // NOI18N
+        rSBtRanquing.setText("Rànquing");
+        rSBtRanquing.setColorHover(new java.awt.Color(189, 197, 157));
+        rSBtRanquing.setColorNormal(new java.awt.Color(209, 217, 177));
+        rSBtRanquing.setColorPressed(new java.awt.Color(189, 197, 157));
+        rSBtRanquing.setColorTextHover(new java.awt.Color(239, 247, 207));
+        rSBtRanquing.setColorTextNormal(new java.awt.Color(23, 33, 33));
+        rSBtRanquing.setColorTextPressed(new java.awt.Color(239, 247, 207));
+        rSBtRanquing.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        rSBtRanquing.setIconTextGap(15);
+        rSBtRanquing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rSBtRanquingMousePressed(evt);
+            }
+        });
+        rSBtRanquing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSBtRanquingActionPerformed(evt);
+            }
+        });
+
+        rSBtJoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/003-dice.png"))); // NOI18N
+        rSBtJoc.setText("Joc");
+        rSBtJoc.setColorHover(new java.awt.Color(189, 197, 157));
+        rSBtJoc.setColorNormal(new java.awt.Color(209, 217, 177));
+        rSBtJoc.setColorPressed(new java.awt.Color(189, 197, 157));
+        rSBtJoc.setColorTextHover(new java.awt.Color(239, 247, 207));
+        rSBtJoc.setColorTextNormal(new java.awt.Color(23, 33, 33));
+        rSBtJoc.setColorTextPressed(new java.awt.Color(239, 247, 207));
+        rSBtJoc.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        rSBtJoc.setIconTextGap(15);
+        rSBtJoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rSBtJocMousePressed(evt);
+            }
+        });
+        rSBtJoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSBtJocActionPerformed(evt);
             }
         });
 
@@ -219,23 +230,23 @@ public class PM02Menu extends javax.swing.JFrame {
         jPanelEsqLlisc.setLayout(jPanelEsqLliscLayout);
         jPanelEsqLliscLayout.setHorizontalGroup(
             jPanelEsqLliscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btInici, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btUsuaris, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btRanquing, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-            .addComponent(btJoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rSBtInici, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+            .addComponent(rSBtUsuaris, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rSBtRanquing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rSBtJoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelEsqLliscLayout.setVerticalGroup(
             jPanelEsqLliscLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEsqLliscLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btInici, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btUsuaris, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btRanquing, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(rSBtInici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSBtUsuaris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSBtRanquing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rSBtJoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -246,17 +257,42 @@ public class PM02Menu extends javax.swing.JFrame {
         jPanel1.add(jPanelEsqLlisc, gridBagConstraints);
 
         jPanelPrinc.setBackground(new java.awt.Color(162, 215, 41));
-        jPanelPrinc.setLayout(new javax.swing.BoxLayout(jPanelPrinc, javax.swing.BoxLayout.LINE_AXIS));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 500));
+
+        jPInicial.setBackground(new java.awt.Color(162, 215, 41));
+        jPInicial.setMaximumSize(new java.awt.Dimension(3600, 2400));
+        jPInicial.setMinimumSize(new java.awt.Dimension(40, 30));
+        jPInicial.setLayout(new javax.swing.BoxLayout(jPInicial, javax.swing.BoxLayout.LINE_AXIS));
 
         lbBenvinguts.setFont(new java.awt.Font("Raleway", 1, 30)); // NOI18N
         lbBenvinguts.setText("Benvinguts");
-        jPanelPrinc.add(lbBenvinguts);
+        jPInicial.add(lbBenvinguts);
 
         lbLogo.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         lbLogo.setForeground(new java.awt.Color(23, 33, 33));
         lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/icon_logo_saberapp_64.png"))); // NOI18N
         lbLogo.setText("SaberApp");
-        jPanelPrinc.add(lbLogo);
+        jPInicial.add(lbLogo);
+
+        jScrollPane1.setViewportView(jPInicial);
+
+        javax.swing.GroupLayout jPanelPrincLayout = new javax.swing.GroupLayout(jPanelPrinc);
+        jPanelPrinc.setLayout(jPanelPrincLayout);
+        jPanelPrincLayout.setHorizontalGroup(
+            jPanelPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPrincLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
+        );
+        jPanelPrincLayout.setVerticalGroup(
+            jPanelPrincLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPrincLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel1.add(jPanelPrinc, new java.awt.GridBagConstraints());
 
@@ -274,80 +310,182 @@ public class PM02Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btJocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btJocActionPerformed
-
     private void lbLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoutMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lbLogoutMouseClicked
 
-    private void btIniciMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btIniciMouseEntered
-        btInici.setBackground(new java.awt.Color(189, 197, 157));
-        btInici.setForeground(new java.awt.Color(239, 247, 207));
-    }//GEN-LAST:event_btIniciMouseEntered
-
-    private void btIniciMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btIniciMouseExited
-        btInici.setBackground(new java.awt.Color(209, 217, 177));
-        btInici.setForeground(new java.awt.Color(23, 33, 33));
-    }//GEN-LAST:event_btIniciMouseExited
-
-    private void btUsuarisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btUsuarisMouseEntered
-        btUsuaris.setBackground(new java.awt.Color(189, 197, 157));
-        btUsuaris.setForeground(new java.awt.Color(239, 247, 207));
-    }//GEN-LAST:event_btUsuarisMouseEntered
-
-    private void btUsuarisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btUsuarisMouseExited
-        btUsuaris.setBackground(new java.awt.Color(209, 217, 177));
-        btUsuaris.setForeground(new java.awt.Color(23, 33, 33));
-    }//GEN-LAST:event_btUsuarisMouseExited
-
-    private void btRanquingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRanquingMouseEntered
-        btRanquing.setBackground(new java.awt.Color(189, 197, 157));
-        btRanquing.setForeground(new java.awt.Color(239, 247, 207));
-    }//GEN-LAST:event_btRanquingMouseEntered
-
-    private void btRanquingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRanquingMouseExited
-        btRanquing.setBackground(new java.awt.Color(209, 217, 177));
-        btRanquing.setForeground(new java.awt.Color(23, 33, 33));
-    }//GEN-LAST:event_btRanquingMouseExited
-
-    private void btJocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btJocMouseClicked
-        
-    }//GEN-LAST:event_btJocMouseClicked
-
-    private void btJocMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btJocMouseEntered
-        btJoc.setBackground(new java.awt.Color(189, 197, 157));
-        btJoc.setForeground(new java.awt.Color(239, 247, 207));
-    }//GEN-LAST:event_btJocMouseEntered
-
-    private void btJocMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btJocMouseExited
-        btJoc.setBackground(new java.awt.Color(209, 217, 177));
-        btJoc.setForeground(new java.awt.Color(23, 33, 33));
-    }//GEN-LAST:event_btJocMouseExited
-
-    private void btIniciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btIniciMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btIniciMouseClicked
-
-    private void btUsuarisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btUsuarisMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btUsuarisMouseClicked
-
-    private void btRanquingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRanquingMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btRanquingMouseClicked
-
     private void btMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMenuActionPerformed
         int position = this.jPanelEsqLlisc.getX();
-        if(position > -1){
+        if (position > -1) {
             Animacion.Animacion.mover_izquierda(0, -150, 2, 2, jPanelEsqLlisc);
-        }else{
+        } else {
             Animacion.Animacion.mover_derecha(-150, 0, 2, 2, jPanelEsqLlisc);
         }
     }//GEN-LAST:event_btMenuActionPerformed
+    //TODO segons l.201-202 de PM01Login
+    //Professor p =new Professor();
+    String nick;
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        lbUsuari.setText(nick);
+    }//GEN-LAST:event_formWindowActivated
 
-    
+    private void rSBtIniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSBtIniciActionPerformed
+        new CanviaPanel(jPInicial, new vistes.panels.PM08Inici());
+        if(this.rSBtInici.isSelected()){
+            this.rSBtInici.setColorNormal(new Color(189,197,157));
+            this.rSBtInici.setColorTextNormal(new Color(239,247,207));
+            this.rSBtInici.setColorHover(new Color(189,197,157));
+            this.rSBtInici.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtUsuaris.setColorNormal(new Color(209,217,177));
+            this.rSBtUsuaris.setColorTextNormal(new Color(23,33,33));
+            this.rSBtUsuaris.setColorHover(new Color(189,197,157));
+            this.rSBtUsuaris.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtRanquing.setColorNormal(new Color(209,217,177));
+            this.rSBtRanquing.setColorTextNormal(new Color(23,33,33));
+            this.rSBtRanquing.setColorHover(new Color(189,197,157));
+            this.rSBtRanquing.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtJoc.setColorNormal(new Color(209,217,177));
+            this.rSBtJoc.setColorTextNormal(new Color(23,33,33));
+            this.rSBtJoc.setColorHover(new Color(189,197,157));
+            this.rSBtJoc.setColorPressed(new Color(189,197,157));
+            
+        }else{
+            this.rSBtInici.setColorNormal(new Color(209,217,177));
+            this.rSBtInici.setColorTextNormal(new Color(23,33,33));
+            this.rSBtInici.setColorHover(new Color(189,197,157));
+            this.rSBtInici.setColorPressed(new Color(189,197,157));
+        }
+    }//GEN-LAST:event_rSBtIniciActionPerformed
+
+    private void rSBtIniciMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSBtIniciMousePressed
+        this.rSBtInici.setSelected(true);
+        this.rSBtUsuaris.setSelected(false);
+        this.rSBtRanquing.setSelected(false);
+        this.rSBtJoc.setSelected(false);
+    }//GEN-LAST:event_rSBtIniciMousePressed
+
+    private void rSBtUsuarisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSBtUsuarisActionPerformed
+        new CanviaPanel(jPInicial, new vistes.panels.PM06Jugadors());
+        if(this.rSBtUsuaris.isSelected()){
+            this.rSBtInici.setColorNormal(new Color(209,217,177));
+            this.rSBtInici.setColorTextNormal(new Color(23,33,33));
+            this.rSBtInici.setColorHover(new Color(189,197,157));
+            this.rSBtInici.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtUsuaris.setColorNormal(new Color(189,197,157));
+            this.rSBtUsuaris.setColorTextNormal(new Color(239,247,207));
+            this.rSBtUsuaris.setColorHover(new Color(189,197,157));
+            this.rSBtUsuaris.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtRanquing.setColorNormal(new Color(209,217,177));
+            this.rSBtRanquing.setColorTextNormal(new Color(23,33,33));
+            this.rSBtRanquing.setColorHover(new Color(189,197,157));
+            this.rSBtRanquing.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtJoc.setColorNormal(new Color(209,217,177));
+            this.rSBtJoc.setColorTextNormal(new Color(23,33,33));
+            this.rSBtJoc.setColorHover(new Color(189,197,157));
+            this.rSBtJoc.setColorPressed(new Color(189,197,157));
+            
+        }else{
+            this.rSBtUsuaris.setColorNormal(new Color(209,217,177));
+            this.rSBtUsuaris.setColorTextNormal(new Color(23,33,33));
+            this.rSBtUsuaris.setColorHover(new Color(189,197,157));
+            this.rSBtUsuaris.setColorPressed(new Color(189,197,157));
+        }
+    }//GEN-LAST:event_rSBtUsuarisActionPerformed
+
+    private void rSBtUsuarisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSBtUsuarisMousePressed
+        this.rSBtInici.setSelected(false);
+        this.rSBtUsuaris.setSelected(true);
+        this.rSBtRanquing.setSelected(false);
+        this.rSBtJoc.setSelected(false);
+    }//GEN-LAST:event_rSBtUsuarisMousePressed
+
+    private void rSBtRanquingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSBtRanquingActionPerformed
+        new CanviaPanel(jPInicial, new vistes.panels.PM07Ranquing());
+        if(this.rSBtRanquing.isSelected()){
+            this.rSBtInici.setColorNormal(new Color(209,217,177));
+            this.rSBtInici.setColorTextNormal(new Color(23,33,33));
+            this.rSBtInici.setColorHover(new Color(189,197,157));
+            this.rSBtInici.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtUsuaris.setColorNormal(new Color(209,217,177));
+            this.rSBtUsuaris.setColorTextNormal(new Color(23,33,33));
+            this.rSBtUsuaris.setColorHover(new Color(189,197,157));
+            this.rSBtUsuaris.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtRanquing.setColorNormal(new Color(189,197,157));
+            this.rSBtRanquing.setColorTextNormal(new Color(239,247,207));
+            this.rSBtRanquing.setColorHover(new Color(189,197,157));
+            this.rSBtRanquing.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtJoc.setColorNormal(new Color(209,217,177));
+            this.rSBtJoc.setColorTextNormal(new Color(23,33,33));
+            this.rSBtJoc.setColorHover(new Color(189,197,157));
+            this.rSBtJoc.setColorPressed(new Color(189,197,157));
+            
+        }else{
+            this.rSBtRanquing.setColorNormal(new Color(209,217,177));
+            this.rSBtRanquing.setColorTextNormal(new Color(23,33,33));
+            this.rSBtRanquing.setColorHover(new Color(189,197,157));
+            this.rSBtRanquing.setColorPressed(new Color(189,197,157));
+        }
+    }//GEN-LAST:event_rSBtRanquingActionPerformed
+
+    private void rSBtRanquingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSBtRanquingMousePressed
+        this.rSBtInici.setSelected(false);
+        this.rSBtUsuaris.setSelected(false);
+        this.rSBtRanquing.setSelected(true);
+        this.rSBtJoc.setSelected(false);
+    }//GEN-LAST:event_rSBtRanquingMousePressed
+
+    private void rSBtJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSBtJocActionPerformed
+        new CanviaPanel(jPInicial, new vistes.panels.PM05Joc());
+        if(this.rSBtJoc.isSelected()){
+            this.rSBtInici.setColorNormal(new Color(209,217,177));
+            this.rSBtInici.setColorTextNormal(new Color(23,33,33));
+            this.rSBtInici.setColorHover(new Color(189,197,157));
+            this.rSBtInici.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtUsuaris.setColorNormal(new Color(209,217,177));
+            this.rSBtUsuaris.setColorTextNormal(new Color(23,33,33));
+            this.rSBtUsuaris.setColorHover(new Color(189,197,157));
+            this.rSBtUsuaris.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtRanquing.setColorNormal(new Color(209,217,177));
+            this.rSBtRanquing.setColorTextNormal(new Color(23,33,33));
+            this.rSBtRanquing.setColorHover(new Color(189,197,157));
+            this.rSBtRanquing.setColorPressed(new Color(189,197,157));
+            
+            this.rSBtJoc.setColorNormal(new Color(189,197,157));
+            this.rSBtJoc.setColorTextNormal(new Color(239,247,207));
+            this.rSBtJoc.setColorHover(new Color(189,197,157));
+            this.rSBtJoc.setColorPressed(new Color(189,197,157));
+            
+        }else{
+            this.rSBtJoc.setColorNormal(new Color(209,217,177));
+            this.rSBtJoc.setColorTextNormal(new Color(23,33,33));
+            this.rSBtJoc.setColorHover(new Color(189,197,157));
+            this.rSBtJoc.setColorPressed(new Color(189,197,157));
+        }
+    }//GEN-LAST:event_rSBtJocActionPerformed
+
+    private void rSBtJocMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSBtJocMousePressed
+        this.rSBtInici.setSelected(false);
+        this.rSBtUsuaris.setSelected(false);
+        this.rSBtRanquing.setSelected(false);
+        this.rSBtJoc.setSelected(true);
+    }//GEN-LAST:event_rSBtJocMousePressed
+
+    private void lbUsuariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUsuariMouseClicked
+        new CanviaPanel(jPInicial, new vistes.panels.PM04Modifica());
+    }//GEN-LAST:event_lbUsuariMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -384,18 +522,30 @@ public class PM02Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btInici;
-    private javax.swing.JButton btJoc;
     private javax.swing.JButton btMenu;
-    private javax.swing.JButton btRanquing;
-    private javax.swing.JButton btUsuaris;
+    private javax.swing.JPanel jPInicial;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelBarraSup;
     private javax.swing.JPanel jPanelEsqLlisc;
     private javax.swing.JPanel jPanelPrinc;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbBenvinguts;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbLogout;
     private javax.swing.JLabel lbUsuari;
+    private recursos.rsbuttom.RSButtonMetro rSBtInici;
+    private recursos.rsbuttom.RSButtonMetro rSBtJoc;
+    private recursos.rsbuttom.RSButtonMetro rSBtRanquing;
+    private recursos.rsbuttom.RSButtonMetro rSBtUsuaris;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+        Object evt = e.getSource();
+        
+        if(evt.equals(lbUsuari)){
+            //vistes.panels.CanviaPanel(jPanelPrinc,vistes.PM04Settings.jPModificar);
+        }
+                }
 }

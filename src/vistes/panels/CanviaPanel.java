@@ -17,10 +17,13 @@ public class CanviaPanel {
 
     /**
      * Constructor de classe
+     * @param container
+     * @param content
      */
     public CanviaPanel(JPanel container, JPanel content) {
         this.container = container;
         this.content = content;
+        
         this.container.removeAll();
         this.container.revalidate();
         this.container.repaint();
@@ -28,6 +31,18 @@ public class CanviaPanel {
         this.container.add(this.content);
         this.container.revalidate();
         this.container.repaint();
+
+        
+        
+        /*
+        this.container.setVisible(false);
+        this.content.setVisible(true);
+        
+        this.container.add(content);
+        
+        this.container.validate();
+        */
     }
+
 
 }
