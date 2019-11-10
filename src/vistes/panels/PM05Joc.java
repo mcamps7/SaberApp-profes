@@ -5,6 +5,10 @@
  */
 package vistes.panels;
 
+import javax.swing.JFrame;
+import vistes.PM01Login;
+import vistes.PM05ACrearJoc;
+
 /**
  *
  * @author montse
@@ -16,6 +20,11 @@ public class PM05Joc extends javax.swing.JPanel {
      */
     public PM05Joc() {
         initComponents();
+        
+        this.setSize(750, 625);
+        this.setLayout(null);
+        
+        jPJoc.setSize(750, 625);
     }
 
     /**
@@ -34,7 +43,7 @@ public class PM05Joc extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(162, 215, 41));
 
-        jPJoc.setBackground(new java.awt.Color(204, 255, 0));
+        jPJoc.setBackground(new java.awt.Color(162, 215, 41));
 
         btCrear.setText("Crear joc de preguntes");
         btCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +85,7 @@ public class PM05Joc extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPJoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPJoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,7 +95,12 @@ public class PM05Joc extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
-        new CanviaPanel(jPJoc, new vistes.panels.PM05aCrearJoc());
+        PM05ACrearJoc f5 = new PM05ACrearJoc();
+        f5.setVisible(true);
+        f5.pack();
+        f5.setLocationRelativeTo(null);
+        f5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }//GEN-LAST:event_btCrearActionPerformed
 
 

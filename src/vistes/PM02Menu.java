@@ -446,6 +446,7 @@ public class PM02Menu extends javax.swing.JFrame implements ActionListener {
 
     private void rSBtJocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSBtJocActionPerformed
         new CanviaPanel(jPInicial, new vistes.panels.PM05Joc());
+        
         if(this.rSBtJoc.isSelected()){
             this.rSBtInici.setColorNormal(new Color(209,217,177));
             this.rSBtInici.setColorTextNormal(new Color(23,33,33));

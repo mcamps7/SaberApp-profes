@@ -22,7 +22,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPJoc" min="-2" max="-2" attributes="0"/>
+              <Component id="jPJoc" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -37,7 +37,7 @@
     <Container class="javax.swing.JPanel" name="jPJoc">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="ff" red="cc" type="rgb"/>
+          <Color blue="29" green="d7" red="a2" type="rgb"/>
         </Property>
       </Properties>
 
