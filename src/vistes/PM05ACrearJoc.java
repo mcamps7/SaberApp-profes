@@ -5,6 +5,8 @@
  */
 package vistes;
 
+import java.awt.Color;
+
 /**
  *
  * @author montse
@@ -12,6 +14,16 @@ package vistes;
 public class PM05ACrearJoc extends javax.swing.JFrame {
 
     private String subject;
+    private String materia;
+    private int num_jornada;
+    private String data_inici;
+    private String data_final;
+    private int num_pregunta;
+    private String enunciat;
+    private String resposta_A, resposta_B, resposta_C, resposta_D;
+    private String correcció;
+    private String url_image;
+    
 
     /**
      * Creates new form PM05ACrearJoc
@@ -22,6 +34,14 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         
         jPanel1.setSize(750, 600);
+        
+        cbMateria.addItem("Mates");
+        cbMateria.addItem("Art");
+        cbMateria.addItem("English");
+        cbMateria.addItem("Història");
+        cbMateria.addItem("Filosofia");
+        
+        this.jButton1.setSelected(true);
     }
 
     /**
@@ -63,28 +83,28 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         cbAny1 = new javax.swing.JComboBox<>();
         jPPregunta = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbNumPreg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtEnunciat = new javax.swing.JTextArea();
+        rdBtRespA = new javax.swing.JRadioButton();
+        txtRespostaA = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdBtRespB = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jTextField3 = new javax.swing.JTextField();
+        txtRespostaB = new javax.swing.JTextField();
+        rdBtRespC = new javax.swing.JRadioButton();
+        txtRespostaC = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jTextField4 = new javax.swing.JTextField();
+        rdBtRespD = new javax.swing.JRadioButton();
+        txtRespostaD = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtCorreccio = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtImatgeUrl = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btGuardaPregunta = new javax.swing.JButton();
+        btConfirmaMateria = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,26 +122,131 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         jLabel1.setText("Joc nº 1 - SaberArt");
 
         btDesaTot.setText("Desa i torna");
+        btDesaTot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDesaTotActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("1");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("2");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton2MousePressed(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("3");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("4");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton4MousePressed(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("5");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton5MousePressed(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("6");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton6MousePressed(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("7");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton7MousePressed(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("8");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton8MousePressed(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("9");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton9MousePressed(evt);
+            }
+        });
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("10");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton10MousePressed(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jPIniciPubli.setBorder(javax.swing.BorderFactory.createTitledBorder("Inici publicació"));
 
@@ -225,50 +350,50 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         jLabel2.setText("Enunciat");
 
-        jLabel3.setText("preg. 1");
+        lbNumPreg.setText("preg. 1");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtEnunciat.setColumns(20);
+        txtEnunciat.setRows(5);
+        jScrollPane1.setViewportView(txtEnunciat);
 
-        jRadioButton1.setText("Correcta");
+        rdBtRespA.setText("Correcta");
 
-        jTextField1.setText("Resposta1");
+        txtRespostaA.setText("Resposta1");
 
         jLabel4.setText("resp. a)");
 
-        jRadioButton2.setText("Correcta");
+        rdBtRespB.setText("Correcta");
 
         jLabel5.setText("resp. b)");
 
-        jTextField2.setText("Resposta2");
+        txtRespostaB.setText("Resposta2");
 
-        jRadioButton3.setText("Correcta");
+        rdBtRespC.setText("Correcta");
 
-        jTextField3.setText("Resposta3");
+        txtRespostaC.setText("Resposta3");
 
         jLabel6.setText("resp. c)");
 
-        jRadioButton4.setText("Correcta");
+        rdBtRespD.setText("Correcta");
 
-        jTextField4.setText("Resposta4");
+        txtRespostaD.setText("Resposta4");
 
         jLabel7.setText("resp. d)");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txtCorreccio.setColumns(20);
+        txtCorreccio.setRows(5);
+        jScrollPane2.setViewportView(txtCorreccio);
 
         jLabel8.setText("Feedback");
 
-        jTextField5.setText("url");
+        txtImatgeUrl.setText("url");
 
         jLabel9.setText("Imatge");
 
-        jButton12.setText("Guarda");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btGuardaPregunta.setText("Guarda");
+        btGuardaPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btGuardaPreguntaActionPerformed(evt);
             }
         });
 
@@ -282,7 +407,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+                    .addComponent(lbNumPreg)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
@@ -293,27 +418,27 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                         .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPPreguntaLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jTextField1))
+                                .addComponent(txtRespostaA))
                             .addGroup(jPPreguntaLayout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRespostaB, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4))
+                            .addComponent(txtRespostaC)
+                            .addComponent(txtRespostaD))
                         .addGap(18, 18, 18)
                         .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton4)
-                                .addComponent(jRadioButton3))
+                                .addComponent(rdBtRespD)
+                                .addComponent(rdBtRespC))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButton2)
-                                .addComponent(jRadioButton1))))
+                                .addComponent(rdBtRespB)
+                                .addComponent(rdBtRespA))))
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2)
-                    .addComponent(jTextField5))
+                    .addComponent(txtImatgeUrl))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPreguntaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12)
+                .addComponent(btGuardaPregunta)
                 .addGap(250, 250, 250))
         );
         jPPreguntaLayout.setVerticalGroup(
@@ -324,32 +449,32 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
+                        .addComponent(lbNumPreg))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
+                    .addComponent(txtRespostaA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdBtRespA)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRespostaB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rdBtRespB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPPreguntaLayout.createSequentialGroup()
                         .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRespostaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRespostaD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)))
                     .addGroup(jPPreguntaLayout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
+                        .addComponent(rdBtRespC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4)))
+                        .addComponent(rdBtRespD)))
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPPreguntaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,14 +484,24 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                         .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtImatgeUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addComponent(jButton12)
+                .addComponent(btGuardaPregunta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton11.setText("Confirma");
+        btConfirmaMateria.setText("Confirma");
+        btConfirmaMateria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btConfirmaMateriaMousePressed(evt);
+            }
+        });
+        btConfirmaMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConfirmaMateriaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -403,7 +538,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(jButton11)))
+                                .addComponent(btConfirmaMateria)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPFiPubli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,7 +552,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton11))
+                    .addComponent(btConfirmaMateria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPIniciPubli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -471,9 +606,369 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         subject = (String) cbMateria.getSelectedItem();
     }//GEN-LAST:event_cbMateriaItemStateChanged
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void btGuardaPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardaPreguntaActionPerformed
+        // TODO llegeix inputs i botó num pregunta seleccionat. Guarda com objecte pregunta
+        
+    }//GEN-LAST:event_btGuardaPreguntaActionPerformed
+
+    private void btConfirmaMateriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConfirmaMateriaMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_btConfirmaMateriaMousePressed
+
+    private void btConfirmaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaMateriaActionPerformed
+        // TODO add your handling code here:
+        materia = (String) cbMateria.getSelectedItem();
+    }//GEN-LAST:event_btConfirmaMateriaActionPerformed
+
+    private void btDesaTotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesaTotActionPerformed
+        // TODO recopila les dades de la partida, empaqueta i desa a la base de dades
+        //aconsegueix data_inici i data_final
+        data_inici=((String) cbDia.getSelectedItem()+"/"+cbMes.getSelectedItem()+"/"+cbAny.getSelectedItem());
+        data_final=((String) cbDia1.getSelectedItem()+"/"+cbMes1.getSelectedItem()+"/"+cbAny1.getSelectedItem());
+        
+    }//GEN-LAST:event_btDesaTotActionPerformed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        jButton1.setSelected(true);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 1");
+        
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton1.isSelected()){
+            jButton1.setBackground(new Color(102,102,102));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton1.setBackground(new Color(238,238,238));
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(true);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 2");
+    }//GEN-LAST:event_jButton2MousePressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton2.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(102,102,102));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton2.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(true);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 3");
+    }//GEN-LAST:event_jButton3MousePressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton3.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(102,102,102));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton3.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(true);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 4");
+    }//GEN-LAST:event_jButton4MousePressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton4.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(102,102,102));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton4.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(true);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 5");
+    }//GEN-LAST:event_jButton5MousePressed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton5.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(102,102,102));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton5.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(true);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 6");
+    }//GEN-LAST:event_jButton6MousePressed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton6.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(102,102,102));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton6.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(true);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 7");
+    }//GEN-LAST:event_jButton7MousePressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton7.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(102,102,102));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton7.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(true);
+        jButton9.setSelected(false);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 8");
+    }//GEN-LAST:event_jButton8MousePressed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton8.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(102,102,102));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton8.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(true);
+        jButton10.setSelected(false);
+        
+        lbNumPreg.setText("preg. 9");
+    }//GEN-LAST:event_jButton9MousePressed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton9.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(102,102,102));
+            jButton10.setBackground(new Color(238,238,238));
+        }else{
+            jButton9.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MousePressed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton4.setSelected(false);
+        jButton5.setSelected(false);
+        jButton6.setSelected(false);
+        jButton7.setSelected(false);
+        jButton8.setSelected(false);
+        jButton9.setSelected(false);
+        jButton10.setSelected(true);
+        
+        lbNumPreg.setText("preg. 10");
+    }//GEN-LAST:event_jButton10MousePressed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        //TODO afegir assegurar que s'han desat canvis abans de canviar pregunta
+        netejaPregunta();
+        if (this.jButton10.isSelected()){
+            jButton1.setBackground(new Color(238,238,238));
+            jButton2.setBackground(new Color(238,238,238));
+            jButton3.setBackground(new Color(238,238,238));
+            jButton4.setBackground(new Color(238,238,238));
+            jButton5.setBackground(new Color(238,238,238));
+            jButton6.setBackground(new Color(238,238,238));
+            jButton7.setBackground(new Color(238,238,238));
+            jButton8.setBackground(new Color(238,238,238));
+            jButton9.setBackground(new Color(238,238,238));
+            jButton10.setBackground(new Color(102,102,102));
+        }else{
+            jButton10.setBackground(new Color(238,238,238));
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,9 +1004,25 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void netejaPregunta(){
+        txtEnunciat.setText("");
+        txtRespostaA.setText("");
+        txtRespostaB.setText("");
+        txtRespostaC.setText("");
+        txtRespostaD.setText("");
+        txtCorreccio.setText("");
+        txtImatgeUrl.setText("");
+        rdBtRespA.setSelected(false);
+        rdBtRespB.setSelected(false);
+        rdBtRespC.setSelected(false);
+        rdBtRespD.setSelected(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btConfirmaMateria;
     private javax.swing.JButton btDesaTot;
+    private javax.swing.JButton btGuardaPregunta;
     private javax.swing.JComboBox<String> cbAny;
     private javax.swing.JComboBox<String> cbAny1;
     private javax.swing.JComboBox<String> cbDia;
@@ -521,8 +1032,6 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbMes1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -533,7 +1042,6 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -544,24 +1052,25 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     private javax.swing.JPanel jPIniciPubli;
     private javax.swing.JPanel jPPregunta;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lbAny;
     private javax.swing.JLabel lbAny1;
     private javax.swing.JLabel lbDia;
     private javax.swing.JLabel lbDia1;
     private javax.swing.JLabel lbMes;
     private javax.swing.JLabel lbMes1;
+    private javax.swing.JLabel lbNumPreg;
+    private javax.swing.JRadioButton rdBtRespA;
+    private javax.swing.JRadioButton rdBtRespB;
+    private javax.swing.JRadioButton rdBtRespC;
+    private javax.swing.JRadioButton rdBtRespD;
+    private javax.swing.JTextArea txtCorreccio;
+    private javax.swing.JTextArea txtEnunciat;
+    private javax.swing.JTextField txtImatgeUrl;
+    private javax.swing.JTextField txtRespostaA;
+    private javax.swing.JTextField txtRespostaB;
+    private javax.swing.JTextField txtRespostaC;
+    private javax.swing.JTextField txtRespostaD;
     // End of variables declaration//GEN-END:variables
 }
