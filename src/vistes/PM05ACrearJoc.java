@@ -21,6 +21,10 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     private int num_pregunta;
     private String enunciat;
     private String resposta_A, resposta_B, resposta_C, resposta_D;
+    private boolean respCorrA=false;
+    private boolean respCorrB=false;
+    private boolean respCorrC=false;
+    private boolean respCorrD=false;
     private String correcció;
     private String url_image;
     
@@ -357,24 +361,64 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtEnunciat);
 
         rdBtRespA.setText("Correcta");
+        rdBtRespA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdBtRespAMousePressed(evt);
+            }
+        });
+        rdBtRespA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtRespAActionPerformed(evt);
+            }
+        });
 
         txtRespostaA.setText("Resposta1");
 
         jLabel4.setText("resp. a)");
 
         rdBtRespB.setText("Correcta");
+        rdBtRespB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdBtRespBMousePressed(evt);
+            }
+        });
+        rdBtRespB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtRespBActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("resp. b)");
 
         txtRespostaB.setText("Resposta2");
 
         rdBtRespC.setText("Correcta");
+        rdBtRespC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdBtRespCMousePressed(evt);
+            }
+        });
+        rdBtRespC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtRespCActionPerformed(evt);
+            }
+        });
 
         txtRespostaC.setText("Resposta3");
 
         jLabel6.setText("resp. c)");
 
         rdBtRespD.setText("Correcta");
+        rdBtRespD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdBtRespDMousePressed(evt);
+            }
+        });
+        rdBtRespD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtRespDActionPerformed(evt);
+            }
+        });
 
         txtRespostaD.setText("Resposta4");
 
@@ -462,19 +506,15 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(rdBtRespB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPPreguntaLayout.createSequentialGroup()
-                        .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRespostaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRespostaD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPPreguntaLayout.createSequentialGroup()
-                        .addComponent(rdBtRespC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdBtRespD)))
+                .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRespostaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(rdBtRespC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRespostaD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(rdBtRespD))
                 .addGroup(jPPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPPreguntaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -969,6 +1009,78 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
             jButton10.setBackground(new Color(238,238,238));
         }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void rdBtRespAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespAMousePressed
+        rdBtRespA.setSelected(true);
+        rdBtRespB.setSelected(false);
+        rdBtRespC.setSelected(false);
+        rdBtRespD.setSelected(false);
+    }//GEN-LAST:event_rdBtRespAMousePressed
+
+    private void rdBtRespAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespAActionPerformed
+        if(rdBtRespA.isSelected()){
+            respCorrA=true;
+            respCorrB=false;
+            respCorrC=false;
+            respCorrD=false;
+        }else{
+            respCorrA=false;
+        }
+    }//GEN-LAST:event_rdBtRespAActionPerformed
+
+    private void rdBtRespBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespBMousePressed
+        rdBtRespA.setSelected(false);
+        rdBtRespB.setSelected(true);
+        rdBtRespC.setSelected(false);
+        rdBtRespD.setSelected(false);
+    }//GEN-LAST:event_rdBtRespBMousePressed
+
+    private void rdBtRespBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespBActionPerformed
+        if(rdBtRespB.isSelected()){
+            respCorrA=false;
+            respCorrB=true;
+            respCorrC=false;
+            respCorrD=false;
+        }else{
+            respCorrB=false;
+        }
+    }//GEN-LAST:event_rdBtRespBActionPerformed
+
+    private void rdBtRespCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespCMousePressed
+        rdBtRespA.setSelected(false);
+        rdBtRespB.setSelected(false);
+        rdBtRespC.setSelected(true);
+        rdBtRespD.setSelected(false);
+    }//GEN-LAST:event_rdBtRespCMousePressed
+
+    private void rdBtRespCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespCActionPerformed
+        if(rdBtRespC.isSelected()){
+            respCorrA=false;
+            respCorrB=false;
+            respCorrC=true;
+            respCorrD=false;
+        }else{
+            respCorrC=false;
+        }
+    }//GEN-LAST:event_rdBtRespCActionPerformed
+
+    private void rdBtRespDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespDMousePressed
+        rdBtRespA.setSelected(false);
+        rdBtRespB.setSelected(false);
+        rdBtRespC.setSelected(false);
+        rdBtRespD.setSelected(true);
+    }//GEN-LAST:event_rdBtRespDMousePressed
+
+    private void rdBtRespDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespDActionPerformed
+        if(rdBtRespD.isSelected()){
+            respCorrA=false;
+            respCorrB=false;
+            respCorrC=false;
+            respCorrD=true;
+        }else{
+            respCorrD=false;
+        }
+    }//GEN-LAST:event_rdBtRespDActionPerformed
 
     /**
      * @param args the command line arguments
