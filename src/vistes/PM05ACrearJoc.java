@@ -6,6 +6,12 @@
 package vistes;
 
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +22,10 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     private String subject;
     private String materia;
     private int num_jornada;
-    private String data_inici;
-    private String data_final;
+    private String data_iniciString;
+    private String data_finalString;
+    private Date data_inici;
+    private Date data_final;
     private int num_pregunta;
     private String enunciat;
     private String resposta_A, resposta_B, resposta_C, resposta_D;
@@ -57,6 +65,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btGroupRespCorrectes = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         cbMateria = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -260,7 +269,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         lbAny.setText("Any");
 
-        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" }));
 
@@ -309,7 +318,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         lbAny1.setText("Any");
 
-        cbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         cbMes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" }));
 
@@ -360,12 +369,8 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         txtEnunciat.setRows(5);
         jScrollPane1.setViewportView(txtEnunciat);
 
+        btGroupRespCorrectes.add(rdBtRespA);
         rdBtRespA.setText("Correcta");
-        rdBtRespA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                rdBtRespAMousePressed(evt);
-            }
-        });
         rdBtRespA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtRespAActionPerformed(evt);
@@ -376,12 +381,8 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         jLabel4.setText("resp. a)");
 
+        btGroupRespCorrectes.add(rdBtRespB);
         rdBtRespB.setText("Correcta");
-        rdBtRespB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                rdBtRespBMousePressed(evt);
-            }
-        });
         rdBtRespB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtRespBActionPerformed(evt);
@@ -392,12 +393,8 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         txtRespostaB.setText("Resposta2");
 
+        btGroupRespCorrectes.add(rdBtRespC);
         rdBtRespC.setText("Correcta");
-        rdBtRespC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                rdBtRespCMousePressed(evt);
-            }
-        });
         rdBtRespC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtRespCActionPerformed(evt);
@@ -408,12 +405,8 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
 
         jLabel6.setText("resp. c)");
 
+        btGroupRespCorrectes.add(rdBtRespD);
         rdBtRespD.setText("Correcta");
-        rdBtRespD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                rdBtRespDMousePressed(evt);
-            }
-        });
         rdBtRespD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtRespDActionPerformed(evt);
@@ -532,11 +525,6 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         );
 
         btConfirmaMateria.setText("Confirma");
-        btConfirmaMateria.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btConfirmaMateriaMousePressed(evt);
-            }
-        });
         btConfirmaMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConfirmaMateriaActionPerformed(evt);
@@ -651,20 +639,31 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btGuardaPreguntaActionPerformed
 
-    private void btConfirmaMateriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btConfirmaMateriaMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btConfirmaMateriaMousePressed
-
     private void btConfirmaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmaMateriaActionPerformed
         // TODO add your handling code here:
         materia = (String) cbMateria.getSelectedItem();
     }//GEN-LAST:event_btConfirmaMateriaActionPerformed
 
     private void btDesaTotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesaTotActionPerformed
-        // TODO recopila les dades de la partida, empaqueta i desa a la base de dades
-        //aconsegueix data_inici i data_final
-        data_inici=((String) cbDia.getSelectedItem()+"/"+cbMes.getSelectedItem()+"/"+cbAny.getSelectedItem());
-        data_final=((String) cbDia1.getSelectedItem()+"/"+cbMes1.getSelectedItem()+"/"+cbAny1.getSelectedItem());
+        try {
+            // TODO recopila les dades de la partida, empaqueta i desa a la base de dades
+            //aconsegueix data_inici i data_final
+            //TODO verificació dates mesos 28, 29,30 o 31 dies, anys de traspas i que la data inici sigui anterior a la final
+            data_iniciString=((String) cbDia.getSelectedItem()+"/"+(String.format("%02d", cbMes.getSelectedIndex()+1))+"/"+cbAny.getSelectedItem());
+            data_finalString=((String) cbDia1.getSelectedItem()+"/"+(String.format("%02d", cbMes1.getSelectedIndex()+1))+"/"+cbAny1.getSelectedItem());
+            
+            System.out.println(data_iniciString);
+            System.out.println(data_finalString);
+            
+            // This object can interpret strings representing dates in the format dd/MM/yyyy
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            
+            // Convert from String to Date
+            data_inici = df.parse(data_iniciString);
+            data_final = df.parse(data_finalString);
+        } catch (ParseException ex) {
+            Logger.getLogger(PM05ACrearJoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btDesaTotActionPerformed
 
@@ -1010,72 +1009,32 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void rdBtRespAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespAMousePressed
-        rdBtRespA.setSelected(true);
-        rdBtRespB.setSelected(false);
-        rdBtRespC.setSelected(false);
-        rdBtRespD.setSelected(false);
-    }//GEN-LAST:event_rdBtRespAMousePressed
-
     private void rdBtRespAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespAActionPerformed
         if(rdBtRespA.isSelected()){
-            respCorrA=true;
-            respCorrB=false;
-            respCorrC=false;
-            respCorrD=false;
+            respCorrA=true;            
         }else{
             respCorrA=false;
         }
     }//GEN-LAST:event_rdBtRespAActionPerformed
 
-    private void rdBtRespBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespBMousePressed
-        rdBtRespA.setSelected(false);
-        rdBtRespB.setSelected(true);
-        rdBtRespC.setSelected(false);
-        rdBtRespD.setSelected(false);
-    }//GEN-LAST:event_rdBtRespBMousePressed
-
     private void rdBtRespBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespBActionPerformed
         if(rdBtRespB.isSelected()){
-            respCorrA=false;
             respCorrB=true;
-            respCorrC=false;
-            respCorrD=false;
         }else{
             respCorrB=false;
         }
     }//GEN-LAST:event_rdBtRespBActionPerformed
 
-    private void rdBtRespCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespCMousePressed
-        rdBtRespA.setSelected(false);
-        rdBtRespB.setSelected(false);
-        rdBtRespC.setSelected(true);
-        rdBtRespD.setSelected(false);
-    }//GEN-LAST:event_rdBtRespCMousePressed
-
     private void rdBtRespCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespCActionPerformed
         if(rdBtRespC.isSelected()){
-            respCorrA=false;
-            respCorrB=false;
             respCorrC=true;
-            respCorrD=false;
         }else{
             respCorrC=false;
         }
     }//GEN-LAST:event_rdBtRespCActionPerformed
 
-    private void rdBtRespDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtRespDMousePressed
-        rdBtRespA.setSelected(false);
-        rdBtRespB.setSelected(false);
-        rdBtRespC.setSelected(false);
-        rdBtRespD.setSelected(true);
-    }//GEN-LAST:event_rdBtRespDMousePressed
-
     private void rdBtRespDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtRespDActionPerformed
         if(rdBtRespD.isSelected()){
-            respCorrA=false;
-            respCorrB=false;
-            respCorrC=false;
             respCorrD=true;
         }else{
             respCorrD=false;
@@ -1134,6 +1093,7 @@ public class PM05ACrearJoc extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConfirmaMateria;
     private javax.swing.JButton btDesaTot;
+    private javax.swing.ButtonGroup btGroupRespCorrectes;
     private javax.swing.JButton btGuardaPregunta;
     private javax.swing.JComboBox<String> cbAny;
     private javax.swing.JComboBox<String> cbAny1;

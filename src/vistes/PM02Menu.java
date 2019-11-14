@@ -484,7 +484,7 @@ public class PM02Menu extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_rSBtJocMousePressed
 
     private void lbUsuariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbUsuariMouseClicked
-        new CanviaPanel(jPInicial, new vistes.panels.PM04Modifica());
+        new CanviaPanel(jPInicial, new vistes.panels.PM04Modifica(nick));
     }//GEN-LAST:event_lbUsuariMouseClicked
 
     /**

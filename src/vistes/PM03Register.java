@@ -316,6 +316,7 @@ public class PM03Register extends javax.swing.JFrame {
                     f2.setVisible(true);
                     f2.setLocationRelativeTo(null);
                     f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    f2.nick = nick;
                     this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Alguna cosa ha anat malament", "Error", JOptionPane.ERROR_MESSAGE);

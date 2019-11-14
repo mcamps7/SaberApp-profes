@@ -28,8 +28,9 @@ public class PM04Modifica extends javax.swing.JPanel {
     /**
      * Creates new form PM04Modifica
      */
-    public PM04Modifica() {
+    public PM04Modifica(String nick) {
         initComponents();
+        user.setText(nick);
     }
 
     /**
@@ -404,6 +405,7 @@ public class PM04Modifica extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btCancelarMousePressed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
