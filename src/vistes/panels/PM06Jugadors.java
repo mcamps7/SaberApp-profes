@@ -5,6 +5,9 @@
  */
 package vistes.panels;
 
+import javax.swing.JFrame;
+import vistes.PM06ARegistrarAlumne;
+
 /**
  *
  * @author montse
@@ -27,21 +30,45 @@ public class PM06Jugadors extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btGestioJugadors = new javax.swing.JButton();
+
         setBackground(new java.awt.Color(162, 215, 41));
+
+        btGestioJugadors.setText("Gestiona Jugadors");
+        btGestioJugadors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGestioJugadorsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(btGestioJugadors)
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(btGestioJugadors)
+                .addGap(233, 233, 233))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btGestioJugadorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGestioJugadorsActionPerformed
+        PM06ARegistrarAlumne f6 = new PM06ARegistrarAlumne();
+        f6.setVisible(true);
+        f6.pack();
+        f6.setLocationRelativeTo(null);
+        f6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_btGestioJugadorsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btGestioJugadors;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,9 +5,13 @@
  */
 package vistes.panels;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import vistes.PM01Login;
 import vistes.PM05ACrearJoc;
+import vistes.PM05BGestionaJoc;
 
 /**
  *
@@ -39,7 +43,6 @@ public class PM05Joc extends javax.swing.JPanel {
         jPJoc = new javax.swing.JPanel();
         btCrear = new javax.swing.JButton();
         btModifica = new javax.swing.JButton();
-        btEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(162, 215, 41));
 
@@ -52,9 +55,12 @@ public class PM05Joc extends javax.swing.JPanel {
             }
         });
 
-        btModifica.setText("Modificar joc de preguntes");
-
-        btEliminar.setText("Borrar joc de preguntes");
+        btModifica.setText("Llistar joc de preguntes");
+        btModifica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPJocLayout = new javax.swing.GroupLayout(jPJoc);
         jPJoc.setLayout(jPJocLayout);
@@ -63,21 +69,18 @@ public class PM05Joc extends javax.swing.JPanel {
             .addGroup(jPJocLayout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(jPJocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btModifica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btModifica, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(btCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(254, Short.MAX_VALUE))
         );
         jPJocLayout.setVerticalGroup(
             jPJocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPJocLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(191, 191, 191)
                 .addComponent(btCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -103,10 +106,21 @@ public class PM05Joc extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btCrearActionPerformed
 
+    private void btModificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificaActionPerformed
+        try {
+            PM05BGestionaJoc f5b = new PM05BGestionaJoc();
+            f5b.setVisible(true);
+            f5b.pack();
+            f5b.setLocationRelativeTo(null);
+            f5b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } catch (ParseException ex) {
+            Logger.getLogger(PM05Joc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btModificaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrear;
-    private javax.swing.JButton btEliminar;
     private javax.swing.JButton btModifica;
     private javax.swing.JPanel jPJoc;
     // End of variables declaration//GEN-END:variables

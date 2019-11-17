@@ -12,7 +12,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import models.Institut;
 
 /**
  * Classe controler dels professors
@@ -71,7 +70,7 @@ public class ClientProfessor extends Connection {
         return line;
     }
 
-    public String registreProfessor(String nick, String password, String nom, String cognoms, String mail, String image, int id_institut, String materia) throws IOException {
+    public String registreProfessor(String nick, String password, String nom, String cognoms, String mail, String image, String institut, String materia) throws IOException {
 
         //La id l'hauria de posar automàticament la BD
                       
@@ -81,7 +80,7 @@ public class ClientProfessor extends Connection {
         sortidaClient.writeUTF(cognoms);
         sortidaClient.writeUTF(mail);
         sortidaClient.writeUTF(image);
-        sortidaClient.writeInt(id_institut);
+        sortidaClient.writeUTF(institut);
         sortidaClient.writeUTF(materia);
 
         entradaClient = new DataInputStream(cs.getInputStream());
@@ -90,18 +89,6 @@ public class ClientProfessor extends Connection {
         //1- tot correcte, 2-error en algun camp, 3-error
         
         return line;
-    }
-
-    private void allInstituts() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("instituts.obj"));
-        String str = (String) entrada.readObject();
-        List<Institut> llista = (List<Institut>) entrada.readObject();
-
-        System.out.println(str);
-
-        for (Institut in : llista) {
-            System.out.println(in.getNom());
-        }
     }
 
     private void logout() {

@@ -13,23 +13,35 @@ import javax.swing.ImageIcon;
  */
 public class Alumne extends Usuari {
 
-    private String curs;
-    private int puntuacio;
+    private int curs;
+    private int puntuacio, num_partides_jugades;
 
-    public Alumne(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, Institut institut, String materia) {
+    public Alumne(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, String institut, int curs) {
         super(id, nick, password, nom, cognoms, email, imatge, institut);
         this.curs= curs;
         this.puntuacio = puntuacio;
+        this.num_partides_jugades = num_partides_jugades;
+    }
+    
+    public Alumne(String nick, String password, String email){
+        
     }
 
     public Alumne() {
     }
 
-    public String getCurs() {
+    public Alumne(int id, String nick, String password, String nom, String cognoms, String email, String institut, int curs, int punts, int numParticipacions) {
+        super(id, nick, password, nom, cognoms, email, institut);
+        this.curs= curs;
+        this.puntuacio = punts;
+        this.num_partides_jugades = numParticipacions;
+    }
+
+    public int getCurs() {
         return curs;
     }
 
-    public void setCurs(String curs) {
+    public void setCurs(int curs) {
         this.curs = curs;
     }
 
@@ -41,12 +53,20 @@ public class Alumne extends Usuari {
         this.puntuacio = puntuacio;
     }
 
-    public Institut getInstitut() {
+    public String getInstitut() {
         return institut;
     }
 
-    public void setInstitut(Institut institut) {
+    public void setInstitut(String institut) {
         this.institut = institut;
+    }
+
+    public int getNum_partides_jugades() {
+        return num_partides_jugades;
+    }
+
+    public void setNum_partides_jugades(int num_partides_jugades) {
+        this.num_partides_jugades = num_partides_jugades;
     }
     
     

@@ -22,9 +22,8 @@ import java.util.logging.Logger;
 public class PM03Register extends javax.swing.JFrame {
 
     String contrasenya;
-    String nick, password, name, surname, school, mail, image;
+    String nick, password, name, surname, school, mail, image, institut;
     String subject = "";
-    int id_institut = 1;
 
     boolean dadesOK = false;
 
@@ -303,9 +302,9 @@ public class PM03Register extends javax.swing.JFrame {
             }
             
             if(dadesOK){
-                res = ges.registreProfessor(nick, contrasenya, name, surname, mail, image, id_institut, subject);
+                res = ges.registreProfessor(nick, contrasenya, name, surname, mail, image, institut, subject);
                     System.out.println("La resposta del servidor és " + res + "\n" + nick + contrasenya + name
-                            + surname + mail + image + id_institut + school + subject);
+                            + surname + mail + image + institut + school + subject);
 
                     dispose();
                     JOptionPane.showMessageDialog(null, "Benvingut " + nick + "!!\n"
@@ -371,7 +370,7 @@ public class PM03Register extends javax.swing.JFrame {
     }//GEN-LAST:event_cbMateriaItemStateChanged
 
     private void cbInstitutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbInstitutItemStateChanged
-        id_institut = ((int) cbInstitut.getSelectedIndex())+1;
+        institut = (String) cbInstitut.getSelectedItem();
     }//GEN-LAST:event_cbInstitutItemStateChanged
 
     /**

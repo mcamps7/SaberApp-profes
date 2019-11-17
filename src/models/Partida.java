@@ -32,6 +32,13 @@ public class Partida {
         this.preguntes = preguntes;
     }
 
+    public Partida(int i, Date ini, Date fi) {
+        this.num_jornada = i;
+        this.data_inici = ini;
+        this.data_final = fi;
+        
+    }
+
     public Joc getJoc() {
         return joc;
     }

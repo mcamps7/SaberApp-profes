@@ -21,7 +21,7 @@ public class Usuari {
     private String cognoms;
     private String email;
     private ImageIcon imatge;
-    public Institut institut;
+    public String institut;
 
     //Constructor
     public Usuari() {
@@ -33,7 +33,7 @@ public class Usuari {
         this.email = email;
     }
 
-    public Usuari(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, Institut institut) {
+    public Usuari(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, String institut) {
 
         this.id = id;
         this.nick = nick;
@@ -42,6 +42,17 @@ public class Usuari {
         this.cognoms = cognoms;
         this.email = email;
         this.imatge = imatge;
+        this.institut = institut;
+    }
+    
+    public Usuari(int id, String nick, String password, String nom, String cognoms, String email, String institut) {
+
+        this.id = id;
+        this.nick = nick;
+        this.password = password;
+        this.nom = nom;
+        this.cognoms = cognoms;
+        this.email = email;
         this.institut = institut;
     }
 
@@ -102,11 +113,11 @@ public class Usuari {
         this.imatge = imatge;
     }
 
-    public Institut getInstitut() {
-        return institut;
+    public String getInstitut() {
+        return institut; 
     }
 
-    public void setInstitut(Institut institut) {
+    public void setInstitut(String institut) {
         this.institut = institut;
     }
 

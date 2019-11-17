@@ -15,7 +15,7 @@ public class Professor extends Usuari {
 
     private String materia;
 
-    public Professor(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, Institut institut, String materia) {
+    public Professor(int id, String nick, String password, String nom, String cognoms, String email, ImageIcon imatge, String institut, String materia) {
         super(id, nick, password, nom, cognoms, email, imatge, institut);
         this.materia = materia;
     }
