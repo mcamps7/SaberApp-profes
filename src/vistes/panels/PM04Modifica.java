@@ -375,7 +375,7 @@ public class PM04Modifica extends javax.swing.JPanel {
             }
 
             if(dadesOK){
-                res = ges.registreProfessor(nick, contrasenya, name, surname, mail, image, id_institut, subject);
+                res = ges.registreProfessor(nick, contrasenya, name, surname, mail, image, school, subject);
                 System.out.println("La resposta del servidor és " + res + "\n" + nick + contrasenya + name
                     + surname + mail + image + id_institut + school + subject);
 
